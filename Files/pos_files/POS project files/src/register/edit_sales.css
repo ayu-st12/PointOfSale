@@ -1,0 +1,119 @@
+.button{
+	-fx-background-color: white;
+}
+
+#printF,#refundF,#salesRF{
+	-fx-background-color: #9E9E9E;
+}
+
+#print,#closecash{
+	-fx-background-color: #37474F;	
+}
+
+#repayHold{
+	-fx-background-color: #9E9E9E;
+}
+
+#footClose{
+	-fx-background-color: #BDBDBD;
+}
+
+#l1,#l2{
+	-fx-background-color: #212121;
+}
+
+#printF_SR,#refundF_SR,#salesRF_SR{
+	-fx-background-color: #9E9E9E;
+}
+
+#line_b,#line_t{
+	-fx-background-color: #616161;
+}
+
+#line_b_SR,#line_t_SR{
+	-fx-background-color: #616161;
+}
+
+#top_sales{
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.7), 2, 0, 0, 0);
+	-fx-background-color: #607d8b;
+}
+
+#text_top{
+	
+}
+
+#title_cenP{
+	-fx-background-color:#90A4AE;
+	}
+
+#fullticekt,#fullticekt_SR,#center_anch
+{
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 2, 0, 0, 1);
+	-fx-background-color: #fff;
+}
+
+#delete,#pay_notes
+{
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 2, 0, 0, 1);
+	-fx-background-color: #9E9E9E;
+}
+
+#fullTd,#fullTd_SR
+{
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 2, 0, 0, 1);
+	-fx-background-color: #9E9E9E;
+}
+
+#ticketPlace,#ticketPlace_SR{
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 2, 0, 0, 1);
+	-fx-background-color: #fff;
+}
+
+#date_top{
+	
+}
+
+#root{
+	
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 2, 0, 0, 0);
+}
+
+#mbar{
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 2, 0, 0, 1);
+	-fx-background-color: #fff;
+}
+
+#menu, #menu_pane{
+	-fx-background-color: #fff;
+}
+
+#right_apane{
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 2, 0, 0, 1);
+	-fx-background-color: #fff;
+}
+
+#ticketfeild,#phnoticket{
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 2, 0, 0, 1);
+	-fx-background-color: #fff;
+}
+
+#searchTicket{
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 2, 0, 0, 1);
+	-fx-background-color: #673AB7;
+}
+
+#AdvancedSearch{
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 2, 0, 0, 1);
+	-fx-background-color: #ef5350;
+}
+
+#asearch{
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 2, 0, 0, 1);
+	-fx-background-color: #fff;
+}
+
+#center_editSale{
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 2, 0, 0, 1);
+	-fx-background-color: #fff;
+}

@@ -1,0 +1,12 @@
+#button{
+	-fx-background-color: #fff;
+}
+
+#pane1{
+	-fx-background-color: #fff;
+}
+
+#list_hamburger
+{
+	visibility: hidden;
+}

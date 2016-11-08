@@ -1,0 +1,60 @@
+
+#test{
+	-fx-background-color: #727272;
+}
+
+#mbar{
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 2, 0, 0, 1);
+	-fx-background-color: #fff;
+}
+
+.tab-label{
+    -fx-content-display: top;
+    -fx-font-size: 11.3145px;
+}
+
+#tab, #btn, #id_pane{
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 2, 0, 0, 1);
+	-fx-background-color: #fff;
+}
+
+#menu, #menu_pane{
+	-fx-background-color: #fff;
+}
+
+#menu_cat{
+	-fx-background-color: #fff;
+	-fx-border-insets:0;
+	-fx-border-width: 1px;
+	-fx-border-color: white white #727272 white;
+}
+
+#menu_cat:hover{
+	-fx-background-color: #cfd8dc;
+}
+
+#menu_subcat{
+	-fx-background-color: #fff;
+	-fx-border-insets:0;
+	-fx-border-width: 1px;
+	-fx-border-color: white white #727272 white;
+	-fx-font-family: "Roboto";
+	-fx-font-size: 12px;
+	-fx-padding:0 0 0 60;
+}
+
+#menu_subcat:hover{
+	-fx-background-color: #cfd8dc;
+}
+
+#dim_pane{
+	-fx-background-color: rgba(0, 0, 0, 0.8);
+}
+
+#checkout_side_pane{
+	-fx-background-color: rgba(0, 0, 0, 0.9);
+}
+
+#mbar_rest{
+	-fx-background-color: rgba(207,216,220,0.6);
+}

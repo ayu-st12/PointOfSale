@@ -1,0 +1,108 @@
+#apcenter{
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 2, 0, 0, 1);
+	-fx-background-color: white;
+}
+
+#top{
+	-fx-background-color:rgba(0,0,0,0.6);
+}
+
+#head{
+	-fx-text-fill: #fff;
+	-fx-font-size: 18;
+}
+
+#head_total{
+	-fx-text-fill: #fff;
+	-fx-font-size: 14;
+}
+
+#head_pay{
+	-fx-text-fill: #000;
+	-fx-font-size: 14;
+}
+
+
+
+#payment1{
+	-fx-background-color: transparent;
+	-fx-text-fill: #ffffff;
+	-fx-font-size: 18;
+	-fx-alignment: CENTER;
+	-fx-border-color: #ffffff;
+	-fx-border-insets: 2;
+	}
+	
+
+#Amount{
+	-fx-text-fill: #fff;
+	-fx-font-size: 46;
+}
+
+#Amount_ipt{
+	-fx-text-fill: #000;
+	-fx-font-size: 46;
+}
+
+#mainbar{
+	-fx-background-color: #ECEFF1;
+}
+
+#ln{
+	-fx-font-size: 18;
+}
+
+#closebutton{
+	-fx-background-color: transparent;
+}
+
+#image_select{
+  -fx-background-color: #00796B;
+  -fx-background-image: url('camera.png');
+  -fx-background-size: 25,25;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center;
+  -fx-background-radius: 100;
+}
+
+#pic{
+	-fx-background-color: #00796B;
+}
+
+#ref{
+	-fx-font-size:15;
+}
+
+#save{
+	-fx-background-color:#388E3C;
+	-fx-text-fill:white;
+	-fx-font-size:18;
+}
+
+#new{
+	-fx-background-color:#1565C0;
+	-fx-text-fill:white;
+	-fx-font-size:18;
+}
+
+#delete{
+	-fx-background-color:#F44336;
+	-fx-text-fill:white;
+	-fx-font-size:18;
+}
+
+#edit{
+	-fx-background-color:#1565C0;
+	-fx-text-fill:white;
+	-fx-font-size:18;
+}
+
+#search_query{
+	-fx-background-color: transparent;
+}
+
+#bottom_final{
+	-fx-background-color: rgba(0,0,0,0.9);
+}
+
+

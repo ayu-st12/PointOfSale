@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="register.Controller.cust_PayController">
+   <children>
+      <BorderPane layoutX="2.0" layoutY="2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <StackPane fx:id="top_sales" prefHeight="60.0" prefWidth="1024.0" BorderPane.alignment="CENTER">
+               <children>
+                  <AnchorPane>
+                     <children>
+                        <AnchorPane prefHeight="20.0" prefWidth="224.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="15.0">
+                           <children>
+                              <Label fx:id="date_top" alignment="TOP_LEFT" layoutX="-11.0" layoutY="5.0" text="Date &amp; Time" textAlignment="CENTER" textFill="#cfd8dc">
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                                 <font>
+                                    <Font name="Noto Sans Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <Label fx:id="text_top" alignment="CENTER" text="OpenLX POS" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="450.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="15.0">
+                           <font>
+                              <Font name="Roboto Black" size="20.0" />
+                           </font>
+                        </Label>
+                        <AnchorPane prefHeight="20.0" prefWidth="224.0" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="20.0">
+                           <children>
+                              <Label alignment="TOP_RIGHT" text="Ver. 01" textFill="#cfd8dc" AnchorPane.rightAnchor="5.0">
+                                 <font>
+                                    <Font name="Noto Sans Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+                  <Pane fx:id="head_pane" prefHeight="60.0" prefWidth="60.0">
+                     <children>
+                        <ImageView fx:id="hbg" fitHeight="35.0" fitWidth="35.0" layoutX="11.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../sales/ham1.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+               </children>
+            </StackPane>
+         </top>
+         <right>
+            <AnchorPane fx:id="right_apane" prefHeight="670.0" prefWidth="350.0" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="2.0" right="1.0" top="2.0" />
+               </BorderPane.margin>
+               <children>
+                  <Label layoutX="36.0" layoutY="34.0" text="Customer Payments" underline="true" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="15.0">
+                     <font>
+                        <Font name="Roboto Regular" size="23.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="phnoticket" layoutX="31.0" layoutY="72.0" prefHeight="35.0" promptText="Phone Number" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="70.0">
+               		
+        		</TextField>
+                  <JFXButton fx:id="searchTicket" layoutX="243.0" layoutY="142.0" onMouseClicked="#searchTicket" prefHeight="40.0" prefWidth="150.0" text="Search" textFill="WHITE" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="135.0">
+                     <font>
+                        <Font name="Roboto Regular" size="18.0" />
+                     </font></JFXButton>
+                  <JFXButton fx:id="AdvancedSearch" layoutX="81.0" layoutY="557.0" onMouseClicked="#showAdvanced" prefHeight="40.0" prefWidth="207.0" text="Advanced Search" textFill="WHITE" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0">
+                     <font>
+                        <Font name="Roboto Regular" size="18.0" />
+                     </font>
+                  </JFXButton>
+               </children></AnchorPane>
+         </right>
+         <center>
+            <AnchorPane fx:id="center_editSale" prefHeight="640.0" prefWidth="670.0" BorderPane.alignment="CENTER">
+               <children>
+                  <AnchorPane fx:id="tableScroll" prefHeight="640.0" prefWidth="670.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <ScrollPane fx:id="Scrollt" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children></AnchorPane>
+                  <AnchorPane fx:id="asearch" prefHeight="639.0" prefWidth="250.0" AnchorPane.bottomAnchor="2.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="2.0">
+                     <children>
+                        <ImageView fitHeight="28.0" fitWidth="29.0" layoutX="50.0" layoutY="6.0" onMouseClicked="#closeAdvanced" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                           <image>
+                              <Image url="@ic_clear_black_24dp.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="14.0" layoutY="45.0" text="Advanced Search" textFill="#9c27b0" underline="true">
+                           <font>
+                              <Font name="Roboto Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <JFXTextField fx:id="adv_cust" layoutX="24.0" layoutY="265.0" promptText="Name" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="220.0" />
+                        <JFXTextField fx:id="skey" layoutX="34.0" layoutY="275.0" promptText="Search Key" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="120.0" />
+                        <JFXTextField fx:id="adv_cust2" layoutX="34.0" layoutY="275.0" promptText="Postal" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="170.0" />
+                        <JFXTextField fx:id="adv_cust3" layoutX="34.0" layoutY="275.0" promptText="Telephone" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="270.0" />
+                        <JFXTextField fx:id="adv_cust31" layoutX="44.0" layoutY="285.0" promptText="Email Address" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="320.0" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </center>
+      </BorderPane>
+      <AnchorPane fx:id="mbar_total" layoutX="18.0" layoutY="79.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
+         <children>
+            <AnchorPane fx:id="mbar_rest" layoutX="299.0" prefHeight="640.0" prefWidth="716.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <AnchorPane fx:id="mbar" prefWidth="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <ScrollPane fx:id="menu_pane" layoutY="140.0" prefHeight="500.0" prefWidth="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="140.0">
+                     <content>
+                        <VBox fx:id="menu" prefHeight="500.0" prefWidth="300.0" />
+                     </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+  
+   </children>
+</AnchorPane>

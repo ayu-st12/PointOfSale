@@ -1,0 +1,8 @@
+#cust_list_center{
+	-fx-background-color: #FFFFFF;
+}
+
+#calc{
+	-fx-background-color: #FFFFFF;
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 2, 0, 0, 0);
+}

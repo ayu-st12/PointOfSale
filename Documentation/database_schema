@@ -1,0 +1,278 @@
+List of all the relations of POS:- 
+ Schema |       Name        |   Type   | Owner |    Size    | Description 
+--------+-------------------+----------+-------+------------+-------------
+ public | cashinout         | table    | root  | 8192 bytes | 
+ public | categories        | table    | root  | 8192 bytes | 
+ public | closedcash        | table    | root  | 0 bytes    | 
+ public | customers         | table    | root  | 8192 bytes | 
+ public | lineremoved       | table    | root  | 0 bytes    | 
+ public | payments          | table    | root  | 8192 bytes | 
+ public | people            | table    | root  | 8192 bytes | 
+ public | product           | table    | root  | 8192 bytes | 
+ public | receipts          | table    | root  | 0 bytes    | 
+ public | returntable       | table    | root  | 0 bytes    | 
+ public | salesreturn       | table    | root  | 0 bytes    | 
+ public | session           | table    | root  | 0 bytes    | 
+ public | stockdiary        | table    | root  | 0 bytes    | 
+ public | taxes             | table    | root  | 8192 bytes | 
+
+
+Relations description:
+
+Table "public.cashinout"
+ Column |            Type             |   Modifiers   | Storage  | Stats target | Description 
+--------+-----------------------------+---------------+----------+--------------+-------------
+ type   | character varying(10)       |               | extended |              | 
+ amount | real                        |               | plain    |              | 
+ start  | timestamp without time zone | default now() | plain    |              | 
+ cid    | character varying(10)       |               | extended |              | 
+ notes  | text                        |               | extended |              | 
+
+
+
+Table "public.categories"
+    Column    |         Type          |                        Modifiers                        | Storage  | Stats target | Description 
+--------------+-----------------------+---------------------------------------------------------+----------+--------------+-------------
+ name         | character varying(75) |                                                         | extended |              | 
+ cat_showname | boolean               |                                                         | plain    |              | 
+ id           | bigint                | not null default nextval('categories_id_seq'::regclass) | plain    |              | 
+ pid          | bigint                |                                                         | plain    |              | 
+Indexes:
+    "categories_pkey" PRIMARY KEY, btree (id)
+Foreign-key constraints:
+    "categories_pid_fkey" FOREIGN KEY (pid) REFERENCES categories(id)
+Referenced by:
+    TABLE "categories" CONSTRAINT "categories_pid_fkey" FOREIGN KEY (pid) REFERENCES categories(id)
+
+
+
+
+Table "public.closedcash"
+   Column    |            Type             |                        Modifiers                        | Storage | Stats target | Description 
+-------------+-----------------------------+---------------------------------------------------------+---------+--------------+-------------
+ id          | bigint                      | not null default nextval('closedcash_id_seq'::regclass) | plain   |              | 
+ total       | real                        |                                                         | plain   |              | 
+ money       | real                        |                                                         | plain   |              | 
+ transaction | integer                     |                                                         | plain   |              | 
+ sales       | integer                     |                                                         | plain   |              | 
+ net         | real                        |                                                         | plain   |              | 
+ taxes       | real                        |                                                         | plain   |              | 
+ endt        | timestamp without time zone | default now()                                           | plain   |              | 
+Indexes:
+    "closedcash_pkey" PRIMARY KEY, btree (id)
+
+
+
+
+Table "public.customers"
+   Column    |            Type             | Modifiers | Storage  | Stats target | Description 
+-------------+-----------------------------+-----------+----------+--------------+-------------
+ id          | character varying(10)       | not null  | extended |              | 
+ searchkey   | character varying(10)       | not null  | extended |              | 
+ name        | character varying(75)       | not null  | extended |              | 
+ taxcat      | character varying(10)       |           | extended |              | 
+ maxdebt     | real                        |           | plain    |              | 
+ address     | character varying(80)       |           | extended |              | 
+ addr2       | character varying(80)       |           | extended |              | 
+ postal      | character varying(10)       |           | extended |              | 
+ city        | character varying(50)       |           | extended |              | 
+ region      | character varying(30)       |           | extended |              | 
+ country     | character varying(50)       |           | extended |              | 
+ fn          | character varying(50)       |           | extended |              | 
+ ln          | character varying(50)       |           | extended |              | 
+ mail        | character varying(150)      |           | extended |              | 
+ phone       | integer                     |           | plain    |              | 
+ phone2      | integer                     |           | plain    |              | 
+ notes       | character varying(100)      |           | extended |              | 
+ visible     | boolean                     |           | plain    |              | 
+ curdate     | timestamp without time zone |           | plain    |              | 
+ image       | bytea                       |           | extended |              | 
+ currentdebt | real                        |           | plain    |              | 
+Indexes:
+    "customers_pkey" PRIMARY KEY, btree (id, searchkey)
+    "customers_index" UNIQUE, btree (id)
+    "customers_mail_key" UNIQUE CONSTRAINT, btree (mail)
+Foreign-key constraints:
+    "customers_fk2" FOREIGN KEY (taxcat) REFERENCES taxes(costumer_cat)
+
+
+
+
+Table "public.lineremoved"
+   Column    |            Type             | Modifiers | Storage  | Stats target | Description 
+-------------+-----------------------------+-----------+----------+--------------+-------------
+ removedate  | timestamp without time zone |           | plain    |              | 
+ name        | character varying(75)       |           | extended |              | 
+ ticketid    | character varying(10)       |           | extended |              | 
+ productid   | character varying(10)       |           | extended |              | 
+ productname | character varying(75)       |           | extended |              | 
+ units       | real                        |           | plain    |              | 
+
+
+
+
+
+Table "public.payments"
+  Column   |          Type          |                       Modifiers                       | Storage  | Stats target | Description 
+-----------+------------------------+-------------------------------------------------------+----------+--------------+-------------
+ receipts  | character varying(10)  |                                                       | extended |              | 
+ total     | real                   |                                                       | plain    |              | 
+ notes     | character varying(75)  |                                                       | extended |              | 
+ returnmsg | character varying(100) |                                                       | extended |              | 
+ tendered  | real                   |                                                       | plain    |              | 
+ id        | bigint                 | not null default nextval('payments_id_seq'::regclass) | plain    |              | 
+
+
+
+
+Table "public.people"
+ Column  |          Type          | Modifiers | Storage  | Stats target | Description 
+---------+------------------------+-----------+----------+--------------+-------------
+ id      | character varying(10)  | not null  | extended |              | 
+ eid     | character varying(10)  |           | extended |              | 
+ name    | character varying(75)  |           | extended |              | 
+ pass    | character varying(150) |           | extended |              | 
+ roleid  | integer                |           | plain    |              | 
+ visible | boolean                |           | plain    |              | 
+ image   | bytea                  |           | extended |              | 
+Indexes:
+    "people_pkey" PRIMARY KEY, btree (id)
+    "people_eid_key" UNIQUE CONSTRAINT, btree (eid)
+    "people_index" UNIQUE, btree (id)
+Referenced by:
+    TABLE "session" CONSTRAINT "session_fk1" FOREIGN KEY (id) REFERENCES people(id)
+
+
+
+
+
+Table "public.product"
+   Column   |         Type          |                      Modifiers                       | Storage  | Stats target | Description 
+------------+-----------------------+------------------------------------------------------+----------+--------------+-------------
+ ref        | character varying(10) |                                                      | extended |              | 
+ code       | character varying(75) |                                                      | extended |              | 
+ codetype   | character varying(10) |                                                      | extended |              | 
+ name       | character varying(75) |                                                      | extended |              | 
+ cp         | real                  |                                                      | plain    |              | 
+ sp         | real                  |                                                      | plain    |              | 
+ cat        | bigint                |                                                      | plain    |              | 
+ taxcat     | character varying(10) |                                                      | extended |              | 
+ stockcost  | real                  |                                                      | plain    |              | 
+ stockvol   | real                  |                                                      | plain    |              | 
+ image      | bytea                 |                                                      | extended |              | 
+ discount   | real                  |                                                      | plain    |              | 
+ warr       | boolean               |                                                      | plain    |              | 
+ stockunit  | real                  |                                                      | plain    |              | 
+ is_service | boolean               |                                                      | plain    |              | 
+ id         | bigint                | not null default nextval('product_id_seq'::regclass) | plain    |              | 
+Indexes:
+    "product_pkey" PRIMARY KEY, btree (id)
+Foreign-key constraints:
+    "product_fk2" FOREIGN KEY (taxcat) REFERENCES taxes(category)
+Referenced by:
+    TABLE "stockdiary" CONSTRAINT "stockdiary_product_fkey" FOREIGN KEY (product) REFERENCES product(id)
+
+
+
+
+Table "public.receipts"
+  Column  |            Type             |                       Modifiers                       | Storage  | Stats target | Description 
+----------+-----------------------------+-------------------------------------------------------+----------+--------------+-------------
+ ticketid | character varying(10)       | not null                                              | extended |              | 
+ name     | character varying(75)       |                                                       | extended |              | 
+ money    | real                        |                                                       | plain    |              | 
+ id       | bigint                      | not null default nextval('receipts_id_seq'::regclass) | plain    |              | 
+ datetime | timestamp without time zone | default now()                                         | plain    |              | 
+Indexes:
+    "receipts_pkey" PRIMARY KEY, btree (ticketid)
+Foreign-key constraints:
+    "receipts_fk1" FOREIGN KEY (ticketid) REFERENCES tickets(ticketid)
+Referenced by:
+    TABLE "taxline" CONSTRAINT "taxline_fk1" FOREIGN KEY (receipt) REFERENCES receipts(ticketid)
+
+
+
+
+
+Table "public.returntable"
+ Column  |         Type          | Modifiers | Storage  | Stats target | Description 
+---------+-----------------------+-----------+----------+--------------+-------------
+ product | character varying(75) |           | extended |              | 
+ unit    | integer               |           | plain    |              | 
+ price   | real                  |           | plain    |              | 
+ taxid   | character varying(10) |           | extended |              | 
+ id      | character varying(10) |           | extended |              | 
+
+
+
+
+Table "public.salesreturn"
+  Column   |         Type          | Modifiers | Storage  | Stats target | Description 
+-----------+-----------------------+-----------+----------+--------------+-------------
+ oldticket | character varying(10) |           | extended |              | 
+ newticket | character varying(10) | not null  | extended |              | 
+ amount    | real                  |           | plain    |              | 
+Indexes:
+    "salesreturn_pkey" PRIMARY KEY, btree (newticket)
+
+
+
+
+Table "public.session"
+ Column |            Type             | Modifiers | Storage  | Stats target | Description 
+--------+-----------------------------+-----------+----------+--------------+-------------
+ sid    | character varying(10)       | not null  | extended |              | 
+ id     | character varying(10)       |           | extended |              | 
+ name   | character varying(75)       |           | extended |              | 
+ tstamp | timestamp without time zone |           | plain    |              | 
+ action | integer                     |           | plain    |              | 
+Indexes:
+    "session_pkey" PRIMARY KEY, btree (sid)
+Foreign-key constraints:
+    "session_fk1" FOREIGN KEY (id) REFERENCES people(id)
+
+
+
+
+Table "public.stockdiary"
+   Column   |            Type             |                        Modifiers                        | Storage  | Stats target | Description 
+------------+-----------------------------+---------------------------------------------------------+----------+--------------+-------------
+ product    | bigint                      |                                                         | plain    |              | 
+ units      | real                        |                                                         | plain    |              | 
+ usr        | character varying(75)       |                                                         | extended |              | 
+ curr_units | real                        |                                                         | plain    |              | 
+ id         | bigint                      | not null default nextval('stockdiary_id_seq'::regclass) | plain    |              | 
+ datetime   | timestamp without time zone | default now()                                           | plain    |              | 
+Indexes:
+    "stockdiary_pkey" PRIMARY KEY, btree (id)
+Foreign-key constraints:
+    "stockdiary_product_fkey" FOREIGN KEY (product) REFERENCES product(id)
+
+
+
+
+
+Table "public.taxes"
+    Column    |         Type          | Modifiers | Storage  | Stats target | Description 
+--------------+-----------------------+-----------+----------+--------------+-------------
+ id           | character varying(10) | not null  | extended |              | 
+ name         | character varying(75) |           | extended |              | 
+ category     | character varying(10) |           | extended |              | 
+ costumer_cat | character varying(10) |           | extended |              | 
+ parentid     | character varying(10) |           | extended |              | 
+ rate         | real                  |           | plain    |              | 
+ ratecascade  | boolean               |           | plain    |              | 
+Indexes:
+    "taxes_pkey" PRIMARY KEY, btree (id)
+    "taxes_index" UNIQUE, btree (id)
+    "taxes_unique1" UNIQUE CONSTRAINT, btree (costumer_cat)
+    "taxes_unique2" UNIQUE CONSTRAINT, btree (category)
+Foreign-key constraints:
+    "taxes_parentid_fkey" FOREIGN KEY (parentid) REFERENCES taxes(id)
+Referenced by:
+    TABLE "customers" CONSTRAINT "customers_fk2" FOREIGN KEY (taxcat) REFERENCES taxes(costumer_cat)
+    TABLE "product" CONSTRAINT "product_fk2" FOREIGN KEY (taxcat) REFERENCES taxes(category)
+    TABLE "taxes" CONSTRAINT "taxes_parentid_fkey" FOREIGN KEY (parentid) REFERENCES taxes(id)
+    TABLE "taxline" CONSTRAINT "taxline_fk2" FOREIGN KEY (taxid) REFERENCES taxes(id)
+
+

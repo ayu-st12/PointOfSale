@@ -1,0 +1,14 @@
+#itemlist
+{
+	-fx-background-color: #ffffff;
+}
+
+#item_container_head{
+	-fx-background-color: #ffffff;	
+	-fx-effect: dropshadow(three-pass-box, #b6b6b6, 2, 0, 0, 1);
+}
+
+#apane
+{
+	-fx-background-color: #a2c3b5;	
+}

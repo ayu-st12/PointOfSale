@@ -1,0 +1,13 @@
+#root{
+	
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 2, 0, 0, 0);
+}
+
+#pane3{
+	-fx-background-color: #727272;
+	
+}
+
+#root_pane2{
+	-fx-background-color: #fff;
+}

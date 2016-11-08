@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="register.Controller.closeCashController">
+   <children>
+      <BorderPane layoutX="2.0" layoutY="2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <StackPane fx:id="top_sales" prefHeight="60.0" prefWidth="1024.0" BorderPane.alignment="CENTER">
+               <children>
+                  <AnchorPane>
+                     <children>
+                        <AnchorPane prefHeight="20.0" prefWidth="224.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="15.0">
+                           <children>
+                              <Label fx:id="date_top" alignment="TOP_LEFT" layoutX="-11.0" layoutY="5.0" text="Date &amp; Time" textAlignment="CENTER" textFill="#cfd8dc">
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                                 <font>
+                                    <Font name="Noto Sans Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <Label fx:id="text_top" alignment="CENTER" text="OpenLX POS" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="450.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="15.0">
+                           <font>
+                              <Font name="Roboto Black" size="20.0" />
+                           </font>
+                        </Label>
+                        <AnchorPane prefHeight="20.0" prefWidth="224.0" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="20.0">
+                           <children>
+                              <Label alignment="TOP_RIGHT" text="Ver. 01" textFill="#cfd8dc" AnchorPane.rightAnchor="5.0">
+                                 <font>
+                                    <Font name="Noto Sans Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+                  <Pane fx:id="head_pane" prefHeight="60.0" prefWidth="60.0">
+                     <children>
+                        <ImageView fx:id="hbg" fitHeight="35.0" fitWidth="35.0" layoutX="11.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../sales/ham1.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+               </children>
+            </StackPane>
+         </top>
+         <center>
+            <AnchorPane fx:id="center_anch" BorderPane.alignment="CENTER">
+               <children>
+                  <AnchorPane fx:id="footClose" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                     <children>
+                        <JFXButton fx:id="print" layoutX="278.0" layoutY="74.0" prefHeight="40.0" prefWidth="120.0" text="Print" textFill="WHITE" AnchorPane.bottomAnchor="100.0" AnchorPane.rightAnchor="40.0">
+                           <font>
+                              <Font name="Roboto Regular" size="16.0" />
+                           </font></JFXButton>
+                        <JFXButton fx:id="closecash" layoutX="288.0" layoutY="84.0" prefHeight="40.0" prefWidth="120.0" text="Close Cash" textFill="WHITE" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="40.0">
+                           <font>
+                              <Font name="Roboto Regular" size="16.0" />
+                           </font></JFXButton>
+                        <Line endX="100.0" layoutX="152.0" layoutY="52.0" startX="-100.0" stroke="#757575" strokeWidth="2.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="50.0" />
+                        <Label layoutX="77.0" layoutY="24.0" text="Total" textFill="#37474f" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="28.0">
+                           <font>
+                              <Font name="Roboto Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Line endX="100.0" layoutX="162.0" layoutY="122.0" startX="-100.0" stroke="#757575" strokeWidth="2.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="130.0" />
+                        <Label layoutX="87.0" layoutY="94.0" text="Money" textFill="#37474f" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="107.0">
+                           <font>
+                              <Font name="Roboto Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="total" layoutX="57.0" layoutY="64.0" text="0" textFill="WHITE" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="60.0">
+                           <font>
+                              <Font name="Roboto Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="money" layoutX="67.0" layoutY="74.0" text="0" textFill="WHITE" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="140.0">
+                           <font>
+                              <Font name="Roboto Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Line endX="100.0" layoutX="431.0" layoutY="41.0" startX="-100.0" stroke="#757575" strokeWidth="2.0" AnchorPane.leftAnchor="330.0" />
+                        <Label layoutX="330.0" layoutY="14.0" text="Transactions" textFill="#757575" AnchorPane.leftAnchor="330.0">
+                           <font>
+                              <Font name="Roboto Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="trans" layoutX="330.0" layoutY="40.0" text="8" textFill="WHITE" AnchorPane.leftAnchor="330.0" AnchorPane.topAnchor="45.0">
+                           <font>
+                              <Font name="Roboto Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Line endX="100.0" layoutX="431.0" layoutY="102.0" startX="-100.0" stroke="#757575" strokeWidth="2.0" AnchorPane.leftAnchor="330.0" />
+                        <Label layoutX="330.0" layoutY="74.0" text="Sales" textFill="#757575" AnchorPane.leftAnchor="330.0">
+                           <font>
+                              <Font name="Roboto Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="sales" layoutX="330.0" layoutY="104.0" text="0" textFill="WHITE" AnchorPane.leftAnchor="330.0">
+                           <font>
+                              <Font name="Roboto Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Line endX="100.0" layoutX="432.0" layoutY="162.0" startX="-100.0" stroke="#757575" strokeWidth="2.0" AnchorPane.leftAnchor="330.0" />
+                        <Label layoutX="327.0" layoutY="134.0" text="No Sale - Drawer Opening" textFill="#757575" AnchorPane.leftAnchor="330.0">
+                           <font>
+                              <Font name="Roboto Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="drawer" layoutX="337.0" layoutY="164.0" text="0" textFill="WHITE" AnchorPane.leftAnchor="330.0" AnchorPane.topAnchor="165.0">
+                           <font>
+                              <Font name="Roboto Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Line endX="100.0" layoutX="711.0" layoutY="41.0" startX="-100.0" stroke="#757575" strokeWidth="2.0" AnchorPane.leftAnchor="610.0" />
+                        <Label layoutX="610.0" layoutY="14.0" text="Net" textFill="#757575" AnchorPane.leftAnchor="610.0">
+                           <font>
+                              <Font name="Roboto Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="net" layoutX="610.0" layoutY="40.0" text="0" textFill="WHITE" AnchorPane.leftAnchor="610.0" AnchorPane.topAnchor="45.0">
+                           <font>
+                              <Font name="Roboto Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Line endX="100.0" layoutX="711.0" layoutY="101.0" startX="-100.0" stroke="#757575" strokeWidth="2.0" AnchorPane.leftAnchor="610.0" />
+                        <Label layoutX="610.0" layoutY="74.0" text="Taxes" textFill="#757575" AnchorPane.leftAnchor="610.0">
+                           <font>
+                              <Font name="Roboto Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="taxes" layoutX="610.0" layoutY="100.0" text="0" textFill="WHITE" AnchorPane.leftAnchor="610.0" AnchorPane.topAnchor="105.0">
+                           <font>
+                              <Font name="Roboto Bold" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <StackPane fx:id="top_sales" prefHeight="50.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                     <children>
+                        <AnchorPane>
+                           <children>
+                              <Label fx:id="text_top1" alignment="CENTER" text="Close Cash" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="450.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="15.0">
+                                 <font>
+                                    <Font name="Roboto Black" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </StackPane>
+                  <Pane fx:id="l1" layoutX="57.0" layoutY="168.0" prefHeight="2.0" prefWidth="200.0" AnchorPane.bottomAnchor="210.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
+                  <Pane fx:id="l2" layoutX="67.0" layoutY="178.0" prefHeight="2.0" prefWidth="200.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="150.0" />
+                  <Label layoutX="20.0" layoutY="89.0" text="Sequence" textFill="#9e9e9e" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="80.0">
+                     <font>
+                        <Font name="Roboto Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="30.0" layoutY="99.0" text="Start Date" textFill="#9e9e9e" AnchorPane.leftAnchor="350.0" AnchorPane.topAnchor="80.0">
+                     <font>
+                        <Font name="Roboto Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="40.0" layoutY="109.0" text="End Date" textFill="#9e9e9e" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="80.0">
+                     <font>
+                        <Font name="Roboto Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="seq" layoutX="50.0" layoutY="108.0" text="1" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="110.0">
+                     <font>
+                        <Font name="Roboto Regular" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="startD" layoutX="350.0" layoutY="110.0" text="2 July 2016" AnchorPane.leftAnchor="350.0" AnchorPane.topAnchor="110.0">
+                     <font>
+                        <Font name="Roboto Regular" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="eDate" layoutX="827.0" layoutY="105.0" text="2 July 2016" AnchorPane.rightAnchor="85.0" AnchorPane.topAnchor="110.0">
+                     <font>
+                        <Font name="Roboto Regular" size="15.0" />
+                     </font>
+                  </Label>
+                  <HBox layoutX="37.0" layoutY="172.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="220.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="170.0">
+                     <children>
+                        <ScrollPane fx:id="cashflow" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets bottom="10.0" right="200.0" />
+                           </HBox.margin>
+                        </ScrollPane>
+                        <ScrollPane fx:id="taxcategory" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets bottom="10.0" />
+                           </HBox.margin>
+                        </ScrollPane>
+                     </children>
+                  </HBox>
+               </children>
+               <BorderPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="30.0" />
+               </BorderPane.margin>
+            </AnchorPane>
+         </center>
+      </BorderPane>
+      <AnchorPane fx:id="mbar_total" layoutX="28.0" layoutY="89.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
+         <children>
+            <AnchorPane fx:id="mbar_rest" layoutX="299.0" prefHeight="640.0" prefWidth="716.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <AnchorPane fx:id="mbar" prefWidth="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <ScrollPane fx:id="menu_pane" layoutY="140.0" prefHeight="500.0" prefWidth="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="140.0">
+                     <content>
+                        <VBox fx:id="menu" prefHeight="500.0" prefWidth="300.0" />
+                     </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

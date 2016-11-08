@@ -1,0 +1,22 @@
+#root_pane{
+	-fx-background-color: #d3d3d3;
+}
+
+#itemlist_pane{
+	-fx-background-color: #ffffff;
+}
+
+#category_pane{
+	-fx-background-color: #ffffff;
+}
+
+#tab{
+	
+	
+	-fx-font-color: #000;
+	
+}
+
+#tabhead{
+	-fx-background-color: #fff;
+}

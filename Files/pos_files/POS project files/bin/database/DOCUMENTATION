@@ -1,0 +1,23 @@
+/*
+
+THIS DOCUMENTS THE ACTIONS DONE BY AYUSH VARDHAN
+
+
+Sr.No		File Name		-		Type		-		Work
+
+1.			db_constant			Interface		Storing database constants	
+2.			dbfunc				Class			functions for database connection
+3.			discount_func		Class			functions for discount on products/bills
+4.			session		Class			functions for handling session i.e. TimeStamp with user login/out
+5. 			dbfunc				Class			additional functions related to database
+
+Sr.No		Global variable		-		Work
+	
+1.			action(act)					Used to handle sessions. [0] -> Logout ; [1] -> LoggedIn
+2. 			g_eid						Used to Indentify current user. [in people_func.java]
+
+
+
+
+
+*/

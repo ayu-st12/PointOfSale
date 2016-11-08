@@ -1,0 +1,1033 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.5.3
+-- Dumped by pg_dump version 9.5.3
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: cashinout; Type: TABLE; Schema: public; Owner: root
+--
+
+CREATE TABLE cashinout (
+    type character varying(10),
+    amount real,
+    start timestamp without time zone DEFAULT now(),
+    cid character varying(10),
+    notes text
+);
+
+
+ALTER TABLE cashinout OWNER TO root;
+
+--
+-- Name: categories; Type: TABLE; Schema: public; Owner: root
+--
+
+CREATE TABLE categories (
+    name character varying(75),
+    cat_showname boolean,
+    id bigint NOT NULL,
+    pid bigint
+);
+
+
+ALTER TABLE categories OWNER TO root;
+
+--
+-- Name: categories_id_seq; Type: SEQUENCE; Schema: public; Owner: root
+--
+
+CREATE SEQUENCE categories_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE categories_id_seq OWNER TO root;
+
+--
+-- Name: categories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
+--
+
+ALTER SEQUENCE categories_id_seq OWNED BY categories.id;
+
+
+--
+-- Name: closedcash; Type: TABLE; Schema: public; Owner: root
+--
+
+CREATE TABLE closedcash (
+    id bigint NOT NULL,
+    total real,
+    money real,
+    transaction integer,
+    sales integer,
+    net real,
+    taxes real,
+    endt timestamp without time zone DEFAULT now()
+);
+
+
+ALTER TABLE closedcash OWNER TO root;
+
+--
+-- Name: closedcash_id_seq; Type: SEQUENCE; Schema: public; Owner: root
+--
+
+CREATE SEQUENCE closedcash_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE closedcash_id_seq OWNER TO root;
+
+--
+-- Name: closedcash_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
+--
+
+ALTER SEQUENCE closedcash_id_seq OWNED BY closedcash.id;
+
+
+--
+-- Name: customers; Type: TABLE; Schema: public; Owner: root
+--
+
+CREATE TABLE customers (
+    id character varying(10) NOT NULL,
+    searchkey character varying(10) NOT NULL,
+    name character varying(75) NOT NULL,
+    taxcat character varying(10),
+    maxdebt real,
+    address character varying(80),
+    addr2 character varying(80),
+    postal character varying(10),
+    city character varying(50),
+    region character varying(30),
+    country character varying(50),
+    fn character varying(50),
+    ln character varying(50),
+    mail character varying(150),
+    phone integer,
+    phone2 integer,
+    notes character varying(100),
+    visible boolean,
+    curdate timestamp without time zone,
+    image bytea,
+    currentdebt real
+);
+
+
+ALTER TABLE customers OWNER TO root;
+
+--
+-- Name: lineremoved; Type: TABLE; Schema: public; Owner: root
+--
+
+CREATE TABLE lineremoved (
+    removedate timestamp without time zone,
+    name character varying(75),
+    ticketid character varying(10),
+    productid character varying(10),
+    productname character varying(75),
+    units real
+);
+
+
+ALTER TABLE lineremoved OWNER TO root;
+
+--
+-- Name: payments; Type: TABLE; Schema: public; Owner: root
+--
+
+CREATE TABLE payments (
+    receipts character varying(10),
+    total real,
+    notes character varying(75),
+    returnmsg character varying(100),
+    tendered real,
+    id bigint NOT NULL
+);
+
+
+ALTER TABLE payments OWNER TO root;
+
+--
+-- Name: payments_id_seq; Type: SEQUENCE; Schema: public; Owner: root
+--
+
+CREATE SEQUENCE payments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE payments_id_seq OWNER TO root;
+
+--
+-- Name: payments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
+--
+
+ALTER SEQUENCE payments_id_seq OWNED BY payments.id;
+
+
+--
+-- Name: people; Type: TABLE; Schema: public; Owner: root
+--
+
+CREATE TABLE people (
+    id character varying(10) NOT NULL,
+    eid character varying(10),
+    name character varying(75),
+    pass character varying(150),
+    roleid integer,
+    visible boolean,
+    image bytea
+);
+
+
+ALTER TABLE people OWNER TO root;
+
+--
+-- Name: product; Type: TABLE; Schema: public; Owner: root
+--
+
+CREATE TABLE product (
+    ref character varying(10),
+    code character varying(75),
+    codetype character varying(10),
+    name character varying(75),
+    cp real,
+    sp real,
+    cat bigint,
+    taxcat character varying(10),
+    stockcost real,
+    stockvol real,
+    image bytea,
+    discount real,
+    warr boolean,
+    stockunit real,
+    is_service boolean,
+    id bigint NOT NULL
+);
+
+
+ALTER TABLE product OWNER TO root;
+
+--
+-- Name: product_id_seq; Type: SEQUENCE; Schema: public; Owner: root
+--
+
+CREATE SEQUENCE product_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE product_id_seq OWNER TO root;
+
+--
+-- Name: product_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
+--
+
+ALTER SEQUENCE product_id_seq OWNED BY product.id;
+
+
+--
+-- Name: receipts; Type: TABLE; Schema: public; Owner: root
+--
+
+CREATE TABLE receipts (
+    ticketid character varying(10) NOT NULL,
+    name character varying(75),
+    money real,
+    id bigint NOT NULL,
+    datetime timestamp without time zone DEFAULT now()
+);
+
+
+ALTER TABLE receipts OWNER TO root;
+
+--
+-- Name: receipts_id_seq; Type: SEQUENCE; Schema: public; Owner: root
+--
+
+CREATE SEQUENCE receipts_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE receipts_id_seq OWNER TO root;
+
+--
+-- Name: receipts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
+--
+
+ALTER SEQUENCE receipts_id_seq OWNED BY receipts.id;
+
+
+--
+-- Name: returntable; Type: TABLE; Schema: public; Owner: root
+--
+
+CREATE TABLE returntable (
+    product character varying(75),
+    unit integer,
+    price real,
+    taxid character varying(10),
+    id character varying(10)
+);
+
+
+ALTER TABLE returntable OWNER TO root;
+
+--
+-- Name: salesreturn; Type: TABLE; Schema: public; Owner: root
+--
+
+CREATE TABLE salesreturn (
+    oldticket character varying(10),
+    newticket character varying(10) NOT NULL,
+    amount real
+);
+
+
+ALTER TABLE salesreturn OWNER TO root;
+
+--
+-- Name: session; Type: TABLE; Schema: public; Owner: root
+--
+
+CREATE TABLE session (
+    sid character varying(10) NOT NULL,
+    id character varying(10),
+    name character varying(75),
+    tstamp timestamp without time zone,
+    action integer
+);
+
+
+ALTER TABLE session OWNER TO root;
+
+--
+-- Name: stockdiary; Type: TABLE; Schema: public; Owner: root
+--
+
+CREATE TABLE stockdiary (
+    product bigint,
+    units real,
+    usr character varying(75),
+    curr_units real,
+    id bigint NOT NULL,
+    datetime timestamp without time zone DEFAULT now()
+);
+
+
+ALTER TABLE stockdiary OWNER TO root;
+
+--
+-- Name: stockdiary_id_seq; Type: SEQUENCE; Schema: public; Owner: root
+--
+
+CREATE SEQUENCE stockdiary_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE stockdiary_id_seq OWNER TO root;
+
+--
+-- Name: stockdiary_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
+--
+
+ALTER SEQUENCE stockdiary_id_seq OWNED BY stockdiary.id;
+
+
+--
+-- Name: taxes; Type: TABLE; Schema: public; Owner: root
+--
+
+CREATE TABLE taxes (
+    id character varying(10) NOT NULL,
+    name character varying(75),
+    category character varying(10),
+    costumer_cat character varying(10),
+    parentid character varying(10),
+    rate real,
+    ratecascade boolean
+);
+
+
+ALTER TABLE taxes OWNER TO root;
+
+--
+-- Name: taxline; Type: TABLE; Schema: public; Owner: root
+--
+
+CREATE TABLE taxline (
+    receipt character varying(10),
+    base real,
+    taxid character varying(10),
+    amount real,
+    id bigint NOT NULL
+);
+
+
+ALTER TABLE taxline OWNER TO root;
+
+--
+-- Name: taxline_id_seq; Type: SEQUENCE; Schema: public; Owner: root
+--
+
+CREATE SEQUENCE taxline_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE taxline_id_seq OWNER TO root;
+
+--
+-- Name: taxline_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
+--
+
+ALTER SEQUENCE taxline_id_seq OWNED BY taxline.id;
+
+
+--
+-- Name: ticketline; Type: TABLE; Schema: public; Owner: root
+--
+
+CREATE TABLE ticketline (
+    ticket character varying(10) NOT NULL,
+    line integer,
+    product character varying(75),
+    unit integer,
+    price real,
+    taxid character varying(10),
+    id bigint NOT NULL
+);
+
+
+ALTER TABLE ticketline OWNER TO root;
+
+--
+-- Name: ticketline_id_seq; Type: SEQUENCE; Schema: public; Owner: root
+--
+
+CREATE SEQUENCE ticketline_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE ticketline_id_seq OWNER TO root;
+
+--
+-- Name: ticketline_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
+--
+
+ALTER SEQUENCE ticketline_id_seq OWNED BY ticketline.id;
+
+
+--
+-- Name: tickets; Type: TABLE; Schema: public; Owner: root
+--
+
+CREATE TABLE tickets (
+    ticketid character varying(10) NOT NULL,
+    tickettype integer,
+    person character varying(75),
+    costumer character varying(75),
+    status integer,
+    id bigint NOT NULL
+);
+
+
+ALTER TABLE tickets OWNER TO root;
+
+--
+-- Name: tickets_id_seq; Type: SEQUENCE; Schema: public; Owner: root
+--
+
+CREATE SEQUENCE tickets_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE tickets_id_seq OWNER TO root;
+
+--
+-- Name: tickets_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
+--
+
+ALTER SEQUENCE tickets_id_seq OWNED BY tickets.id;
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY categories ALTER COLUMN id SET DEFAULT nextval('categories_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY closedcash ALTER COLUMN id SET DEFAULT nextval('closedcash_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY payments ALTER COLUMN id SET DEFAULT nextval('payments_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY product ALTER COLUMN id SET DEFAULT nextval('product_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY receipts ALTER COLUMN id SET DEFAULT nextval('receipts_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY stockdiary ALTER COLUMN id SET DEFAULT nextval('stockdiary_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY taxline ALTER COLUMN id SET DEFAULT nextval('taxline_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY ticketline ALTER COLUMN id SET DEFAULT nextval('ticketline_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY tickets ALTER COLUMN id SET DEFAULT nextval('tickets_id_seq'::regclass);
+
+
+--
+-- Data for Name: cashinout; Type: TABLE DATA; Schema: public; Owner: root
+--
+
+COPY cashinout (type, amount, start, cid, notes) FROM stdin;
+\.
+
+
+--
+-- Data for Name: categories; Type: TABLE DATA; Schema: public; Owner: root
+--
+
+COPY categories (name, cat_showname, id, pid) FROM stdin;
+General	t	1	\N
+\.
+
+
+--
+-- Name: categories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
+--
+
+SELECT pg_catalog.setval('categories_id_seq', 7, true);
+
+
+--
+-- Data for Name: closedcash; Type: TABLE DATA; Schema: public; Owner: root
+--
+
+COPY closedcash (id, total, money, transaction, sales, net, taxes, endt) FROM stdin;
+\.
+
+
+--
+-- Name: closedcash_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
+--
+
+SELECT pg_catalog.setval('closedcash_id_seq', 1, false);
+
+
+--
+-- Data for Name: customers; Type: TABLE DATA; Schema: public; Owner: root
+--
+
+COPY customers (id, searchkey, name, taxcat, maxdebt, address, addr2, postal, city, region, country, fn, ln, mail, phone, phone2, notes, visible, curdate, image, currentdebt) FROM stdin;
+\.
+
+
+--
+-- Data for Name: lineremoved; Type: TABLE DATA; Schema: public; Owner: root
+--
+
+COPY lineremoved (removedate, name, ticketid, productid, productname, units) FROM stdin;
+\.
+
+
+--
+-- Data for Name: payments; Type: TABLE DATA; Schema: public; Owner: root
+--
+
+COPY payments (receipts, total, notes, returnmsg, tendered, id) FROM stdin;
+A03471DCC	11000	good	good	411.899994	107
+E51D0B73C	531.099976	good	good	0	108
+\.
+
+
+--
+-- Name: payments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
+--
+
+SELECT pg_catalog.setval('payments_id_seq', 108, true);
+
+
+--
+-- Data for Name: people; Type: TABLE DATA; Schema: public; Owner: root
+--
+
+COPY people (id, eid, name, pass, roleid, visible, image) FROM stdin;
+\.
+
+
+--
+-- Data for Name: product; Type: TABLE DATA; Schema: public; Owner: root
+--
+
+COPY product (ref, code, codetype, name, cp, sp, cat, taxcat, stockcost, stockvol, image, discount, warr, stockunit, is_service, id) FROM stdin;
+\.
+
+
+--
+-- Name: product_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
+--
+
+SELECT pg_catalog.setval('product_id_seq', 17, true);
+
+
+--
+-- Data for Name: receipts; Type: TABLE DATA; Schema: public; Owner: root
+--
+
+COPY receipts (ticketid, name, money, id, datetime) FROM stdin;
+\.
+
+
+--
+-- Name: receipts_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
+--
+
+SELECT pg_catalog.setval('receipts_id_seq', 111, true);
+
+
+--
+-- Data for Name: returntable; Type: TABLE DATA; Schema: public; Owner: root
+--
+
+COPY returntable (product, unit, price, taxid, id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: salesreturn; Type: TABLE DATA; Schema: public; Owner: root
+--
+
+COPY salesreturn (oldticket, newticket, amount) FROM stdin;
+\.
+
+
+--
+-- Data for Name: session; Type: TABLE DATA; Schema: public; Owner: root
+--
+
+COPY session (sid, id, name, tstamp, action) FROM stdin;
+\.
+
+
+--
+-- Data for Name: stockdiary; Type: TABLE DATA; Schema: public; Owner: root
+--
+
+COPY stockdiary (product, units, usr, curr_units, id, datetime) FROM stdin;
+\.
+
+
+--
+-- Name: stockdiary_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
+--
+
+SELECT pg_catalog.setval('stockdiary_id_seq', 5, true);
+
+
+--
+-- Data for Name: taxes; Type: TABLE DATA; Schema: public; Owner: root
+--
+
+COPY taxes (id, name, category, costumer_cat, parentid, rate, ratecascade) FROM stdin;
+1	VAT	VAT	General	\N	13	f
+\.
+
+
+--
+-- Data for Name: taxline; Type: TABLE DATA; Schema: public; Owner: root
+--
+
+COPY taxline (receipt, base, taxid, amount, id) FROM stdin;
+\.
+
+
+--
+-- Name: taxline_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
+--
+
+SELECT pg_catalog.setval('taxline_id_seq', 102, true);
+
+
+--
+-- Data for Name: ticketline; Type: TABLE DATA; Schema: public; Owner: root
+--
+
+COPY ticketline (ticket, line, product, unit, price, taxid, id) FROM stdin;
+\.
+
+
+--
+-- Name: ticketline_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
+--
+
+SELECT pg_catalog.setval('ticketline_id_seq', 336, true);
+
+
+--
+-- Data for Name: tickets; Type: TABLE DATA; Schema: public; Owner: root
+--
+
+COPY tickets (ticketid, tickettype, person, costumer, status, id) FROM stdin;
+\.
+
+
+--
+-- Name: tickets_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
+--
+
+SELECT pg_catalog.setval('tickets_id_seq', 122, true);
+
+
+--
+-- Name: categories_pkey; Type: CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY categories
+    ADD CONSTRAINT categories_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: closedcash_pkey; Type: CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY closedcash
+    ADD CONSTRAINT closedcash_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: customers_mail_key; Type: CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY customers
+    ADD CONSTRAINT customers_mail_key UNIQUE (mail);
+
+
+--
+-- Name: customers_pkey; Type: CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY customers
+    ADD CONSTRAINT customers_pkey PRIMARY KEY (id, searchkey);
+
+
+--
+-- Name: people_eid_key; Type: CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY people
+    ADD CONSTRAINT people_eid_key UNIQUE (eid);
+
+
+--
+-- Name: people_pkey; Type: CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY people
+    ADD CONSTRAINT people_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: product_pkey; Type: CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY product
+    ADD CONSTRAINT product_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: receipts_pkey; Type: CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY receipts
+    ADD CONSTRAINT receipts_pkey PRIMARY KEY (ticketid);
+
+
+--
+-- Name: salesreturn_pkey; Type: CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY salesreturn
+    ADD CONSTRAINT salesreturn_pkey PRIMARY KEY (newticket);
+
+
+--
+-- Name: session_pkey; Type: CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY session
+    ADD CONSTRAINT session_pkey PRIMARY KEY (sid);
+
+
+--
+-- Name: stockdiary_pkey; Type: CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY stockdiary
+    ADD CONSTRAINT stockdiary_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: taxes_pkey; Type: CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY taxes
+    ADD CONSTRAINT taxes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: taxes_unique1; Type: CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY taxes
+    ADD CONSTRAINT taxes_unique1 UNIQUE (costumer_cat);
+
+
+--
+-- Name: taxes_unique2; Type: CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY taxes
+    ADD CONSTRAINT taxes_unique2 UNIQUE (category);
+
+
+--
+-- Name: taxline_receipt_key; Type: CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY taxline
+    ADD CONSTRAINT taxline_receipt_key UNIQUE (receipt);
+
+
+--
+-- Name: ticketline_pkey; Type: CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY ticketline
+    ADD CONSTRAINT ticketline_pkey UNIQUE (id);
+
+
+--
+-- Name: tickets_pkey; Type: CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY tickets
+    ADD CONSTRAINT tickets_pkey PRIMARY KEY (ticketid);
+
+
+--
+-- Name: customers_index; Type: INDEX; Schema: public; Owner: root
+--
+
+CREATE UNIQUE INDEX customers_index ON customers USING btree (id);
+
+
+--
+-- Name: people_index; Type: INDEX; Schema: public; Owner: root
+--
+
+CREATE UNIQUE INDEX people_index ON people USING btree (id);
+
+
+--
+-- Name: taxes_index; Type: INDEX; Schema: public; Owner: root
+--
+
+CREATE UNIQUE INDEX taxes_index ON taxes USING btree (id);
+
+
+--
+-- Name: categories_pid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY categories
+    ADD CONSTRAINT categories_pid_fkey FOREIGN KEY (pid) REFERENCES categories(id);
+
+
+--
+-- Name: customers_fk2; Type: FK CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY customers
+    ADD CONSTRAINT customers_fk2 FOREIGN KEY (taxcat) REFERENCES taxes(costumer_cat);
+
+
+--
+-- Name: product_fk2; Type: FK CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY product
+    ADD CONSTRAINT product_fk2 FOREIGN KEY (taxcat) REFERENCES taxes(category);
+
+
+--
+-- Name: receipts_fk1; Type: FK CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY receipts
+    ADD CONSTRAINT receipts_fk1 FOREIGN KEY (ticketid) REFERENCES tickets(ticketid);
+
+
+--
+-- Name: session_fk1; Type: FK CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY session
+    ADD CONSTRAINT session_fk1 FOREIGN KEY (id) REFERENCES people(id);
+
+
+--
+-- Name: stockdiary_product_fkey; Type: FK CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY stockdiary
+    ADD CONSTRAINT stockdiary_product_fkey FOREIGN KEY (product) REFERENCES product(id);
+
+
+--
+-- Name: taxes_parentid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY taxes
+    ADD CONSTRAINT taxes_parentid_fkey FOREIGN KEY (parentid) REFERENCES taxes(id);
+
+
+--
+-- Name: taxline_fk1; Type: FK CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY taxline
+    ADD CONSTRAINT taxline_fk1 FOREIGN KEY (receipt) REFERENCES receipts(ticketid);
+
+
+--
+-- Name: taxline_fk2; Type: FK CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY taxline
+    ADD CONSTRAINT taxline_fk2 FOREIGN KEY (taxid) REFERENCES taxes(id);
+
+
+--
+-- Name: ticketline_fk1; Type: FK CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY ticketline
+    ADD CONSTRAINT ticketline_fk1 FOREIGN KEY (ticket) REFERENCES tickets(ticketid);
+
+
+--
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
